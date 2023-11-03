@@ -24,6 +24,16 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+    - name: if case
+      run: echo "BUILD FAILURE" >> test.txt
+
+    - name: if else deneme
+      run: |
+        if grep -q "BUILD FAILURE" test.txt; then
+        echo "Test failed"
+        else
+        echo "test passed"
+        fi
 
     - name: Build with Gradle
       run: ./gradlew build        
