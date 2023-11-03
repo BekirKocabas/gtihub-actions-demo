@@ -29,7 +29,7 @@ jobs:
 
     - name: if else deneme
       run: |
-        if grep -q "BUILD FAILUR" test.txt; then
+        if grep -q "BUILD FAILURa" test.txt; then
         echo "Test failed"
         else
         echo "test passed"
