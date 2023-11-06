@@ -30,9 +30,9 @@ jobs:
     - name: if else deneme
       run: |
         if grep -q "BUILD FAILURa" test.txt; then
-        echo "Test failed"
+        echo "failed" > pass_fail.txt
         else
-        echo "test passed"
+        echo "passed" > pass_fail.txt
         fi
 
     - name: Build with Gradle
