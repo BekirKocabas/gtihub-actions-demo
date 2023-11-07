@@ -29,7 +29,7 @@ jobs:
     - name: if else deneme
       run: |
         if grep -q "BUILD FAILURE" test.txt; then
-        env:
+          env:
           status: failed
         fi
         echo ${{status}}
