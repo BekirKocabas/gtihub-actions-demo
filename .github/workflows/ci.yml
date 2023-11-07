@@ -30,18 +30,14 @@ jobs:
     - name: if case
       run: echo "BUILD FAILURE" >> test.txt
 
+    - name: if else deneme
+      run: |
+        if grep -q "BUILD FAILURE" test.txt; then
+          env:
+          status: failed
+        fi
+        echo ${{env.status}}
+
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Send Email
-      env:
-        SMTP_SERVER: smtp.gmail.com
-        SMTP_PORT: 587
-        SMTP_USERNAME: ${{ secrets.GMAIL_USERNAME }} # Gmail hesap kullanıcı adı
-        SMTP_PASSWORD: ${{ secrets.GMAIL_PASSWORD }} # Gmail hesap parolası
-        TO_EMAIL: b.kocabas@bcsit-gmbh.de # Alıcı e-posta adresi
-        FROM_EMAIL: bekirkocabas49@gmail.com # Gönderen e-posta adresi (Gmail adresiniz)
-      run: |
-        echo "Subject: Test Email" > email.txt
-        echo "This is a test email sent from GitHub Actions." >> email.txt
-        cat email.txt | msmtp --from=$FROM_EMAIL --host=$SMTP_SERVER --port=$SMTP_PORT --user=$SMTP_USERNAME --password=$SMTP_PASSWORD $TO_EMAIL
