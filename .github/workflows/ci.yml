@@ -46,6 +46,7 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_PASSWORD }}
           subject: Your a star ✨
+          ignore_cert: true
           body: ${{ github.actor }} just starred your mail-on-star repo!!! ${{ github.repository }}
           to: ${{ secrets.BCS_ADDRESS }}
           from: ${{ secrets.GMAIL_ADDRESS }}
