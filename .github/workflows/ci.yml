@@ -32,6 +32,6 @@ jobs:
           env:
           status: failed
         fi
-        echo ${{status}}
+        echo ${{env.status}}
     - name: Build with Gradle
       run: ./gradlew build
