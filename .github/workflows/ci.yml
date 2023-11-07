@@ -2,17 +2,17 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build-java:
 
     runs-on: ubuntu-latest
-    env:
-      STATUS: passed
-
+    env: 
+      status: passed
+    
     steps:
     - uses: actions/checkout@v2
 
@@ -23,21 +23,15 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-
     - name: if case
       run: echo "BUILD FAILURE" >> test.txt
 
     - name: if else deneme
       run: |
-        if grep -q "BUILD FAILURE" test.txt; then          
-          echo "::set-env name=STATUS::failed"
-        else
-          echo "Build succeeded"
+        if grep -q "BUILD FAILURE" test.txt; then
+        env:
+          status: failed
         fi
-
+        echo ${{status}}
     - name: Build with Gradle
       run: ./gradlew build
-
-    - name: Check Build Status
-      run: echo "Build Status:$STATUS"
-
